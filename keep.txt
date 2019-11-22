@@ -1,0 +1,14 @@
+az-prod_rg-prod-ncus-webapps-mbor
+Corporate_Shuttle_Client
+az-prod_rg-prod-ncus-app-aphelp
+DigitalCatalog
+az-nonprog_rg-nonprod-cus-digitalRandDgigster
+aws-dc31-prod_net-infra
+aws-dc31-prod_svr-infra
+aws-mktg-dev_alexa
+aws-mktg-playbook_prod
+aws-mktg-playbook_test
+gcp-config-nat-gateway
+gcp-config-shared-vpc
+gcp-deploy-kickstart-cloudvpn-static-routes
+gcp-deploy-kickstart-windows-servers
