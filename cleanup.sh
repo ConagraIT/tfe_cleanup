@@ -9,15 +9,15 @@ for WORKSPACE in $(tfh workspace list -org $TFE_ORG | grep -vf keep.txt); do
     echo "WORKSPACE: $WORKSPACE"
 
     # DELETE VARIABLES FIRST TO ENSURE NO DESTRUCTION OF RESOURCES HAPPENS
-    VARS=$(tfh pullvars -name $WORKSPACE -org $TFE_ORG -env true | awk -F '=' '{print$1}')
-    echo "confirm delete variables in workspace: $WORKSPACE? [yes|no]" 
-    read CONFIRM
-    if [ "$CONFIRM" == "yes" ]; then
-        for VAR in $VARS; do
-            # TODO: remove dry-run
-            tfh pushvars -name $WORKSPACE -org $TFE_ORG -delete-env $VAR -dry-run
-        done
-    fi
+    # VARS=$(tfh pullvars -name $WORKSPACE -org $TFE_ORG -env true | awk -F '=' '{print$1}')
+    # echo "confirm delete variables in workspace: $WORKSPACE? [yes|no]" 
+    # read CONFIRM
+    # if [ "$CONFIRM" == "yes" ]; then
+    #     for VAR in $VARS; do
+    #         # TODO: remove dry-run
+    #         tfh pushvars -name $WORKSPACE -org $TFE_ORG -delete-env $VAR
+    #     done
+    # fi
 
     # DELETE WORKSPACES
     echo "confirm delete workspace: $WORKSPACE? [yes|no]" 
@@ -25,7 +25,7 @@ for WORKSPACE in $(tfh workspace list -org $TFE_ORG | grep -vf keep.txt); do
     if [ "$CONFIRM" == "yes" ]; then
         echo "tfh workspace delete -name $WORKSPACE -org $TFE_ORG"
         # TODO: uncomment
-        #tfh workspace delete -name $WORKSPACE -org $TFE_ORG
+        tfh workspace delete -name $WORKSPACE -org $TFE_ORG
     else
         echo "NOT RUNNING $CMD"
     fi
@@ -47,7 +47,7 @@ for WORKSPACE in $(tfh workspace list -org $TFE_ORG | grep -vf keep.txt); do
         if [ "$CONFIRM" == "yes" ]; then
             echo hub delete $REPO
             # TODO: uncomment
-            #hub delete $REPO
+            hub delete -y $GH_ORG/$WORKSPACE
         else
             echo "NOT DELETEING REPO $REPO"
         fi
